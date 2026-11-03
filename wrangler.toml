@@ -1,12 +1,16 @@
 name = "myht-r5-command-center"
 main = "src/worker.js"
 compatibility_date = "2026-11-03"
+workers_dev = true
 
 [assets]
 directory = "./public"
 binding = "ASSETS"
 run_worker_first = ["/api/*"]
 
-# Set these in Cloudflare dashboard as environment variables.
-# NOTION_TOKEN, ACCESS_AUD, ACCESS_TEAM_DOMAIN, ALLOWED_EMAIL must be secrets.
-# TASKS_DATA_SOURCE_ID and HR_DATA_SOURCE_ID are ordinary environment variables.
+[vars]
+TASKS_DATA_SOURCE_ID = "b52d4e54-86f9-4eee-8c6b-1179ff29491a"
+HR_DATA_SOURCE_ID = "08a1a3a7-1f10-48d7-97ed-1e45daef77c3"
+
+# NOTION_TOKEN, ACCESS_AUD, ACCESS_TEAM_DOMAIN and ALLOWED_EMAIL stay in Cloudflare secrets.
+# Cloudflare Access protects production and preview URLs.

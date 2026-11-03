@@ -18,13 +18,13 @@ The GitHub repository and Pages site may be public. **Never place Notion tokens,
 ## How it works
 
 - `public/index.html`: Mobile-first UI, responsive tabs, live task list and search, removal registry explorer.
-- `src/worker.js`: Same-origin authenticated API. `GET /api/bootstrap` loads live Notion tasks and cases; `PATCH /api/tasks/:id` updates a task's Done/Inbox status. No browser-held Notion credentials.
+- `src/worker.js`: Same-origin authenticated API. `GET /api/bootstrap` loads live Notion tasks and cases; `PATCH /api/tasks/:id` updates a task's separate R5 Complete checkbox. No browser-held Notion credentials.
 - `wrangler.toml`: Worker static-asset routing and deployment settings.
 - `package.json`: local Wrangler commands.
 
 ## Notes
 
-The 'My Duties' checkbox changes the Notion **Status** property to `Done`; unchecking returns it to `Inbox`, not to its previous intermediate status. Improve this if you need status-history retention. This first version exposes read-only HR search; it does not create or edit HR cases through the dashboard.
+The 'My Duties' checkbox updates the dedicated Notion **R5 Complete** checkbox. It does not modify the **Status** workflow, calendar scheduling, or assigned owner. This first version exposes read-only HR search; it does not create or edit HR cases through the dashboard.
 
 The existing twice-daily Notion-to-iCloud synchronization runs independently of this site. No secrets or HR data are needed in the GitHub repository.
 

@@ -59,8 +59,8 @@ export default {
     const id=match[1];
     const page=await notion(env,"/pages/"+encodeURIComponent(id));
     if(page.parent?.data_source_id!==env.TASKS_DATA_SOURCE_ID)return json({error:"Not an approved task"},403);
-    const updated=await notion(env,"/pages/"+encodeURIComponent(id),"PATCH",{properties:{Status:{status:{name:data.done?"Done":"Inbox"}}}});
-    return json({id:updated.id,status:data.done?"Done":"Inbox"});
+    const updated=await notion(env,"/pages/"+encodeURIComponent(id),"PATCH",{properties:{"R5 Complete":{checkbox:data.done}}});
+    return json({id:updated.id,completed:Boolean(updated.properties?.["R5 Complete"]?.checkbox)});
    }
    return json({error:"Not found"},404);
   }catch(e){
